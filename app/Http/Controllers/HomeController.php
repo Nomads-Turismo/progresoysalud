@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\RedsysController;
 use App\Models\Payments;
 use App\Models\ParticularRequest;
+use GuzzleHttp\Psr7\Message;
 
 class HomeController extends Controller
 {
@@ -86,7 +87,6 @@ class HomeController extends Controller
      * @return String $role
      */
     public function do_register(Request $request){
-        // Valida los datos del formulario de registro
         $request->validate([
             'nombre' => 'required|string|max:255',
             'password' => 'required|string|max:8',
@@ -103,7 +103,6 @@ class HomeController extends Controller
             'acepta_tratamiento_datos' => 'required|boolean',
         ]);
 
-        // Crea un nuevo usuario
         $user = new User();
         $user->nombre = $request->nombre;
         $user->apellidos = $request->apellidos;
@@ -120,11 +119,9 @@ class HomeController extends Controller
         $user->acepta_tratamiento_datos = $request->acepta_tratamiento_datos;
         $user->save();
 
-        // Inicia sesión con el usuario recién creado
         Auth::login($user);
 
-        // Redirige al usuario a la vista principal del panel
-        return redirect()->back()->with('success', '¡Su inscripción se ha realizado correctamente!');
+        return response()->json(['sucess' => true, "message"=>('Inscripción correcta')]);
     }
 
     /**

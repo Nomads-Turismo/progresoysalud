@@ -21,8 +21,16 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role',
-        'teacher_relation'
+        'apellidos',
+        'entidad',
+        'cargo',
+        'tipologia',
+        'dni',
+        'telefono',
+        'experiencia_cpi',
+        'anios_experiencia',
+        'conoce_mdt',
+        'acepta_tratamiento_datos',
     ];
 
     /**
