@@ -87,25 +87,44 @@ class HomeController extends Controller
      */
     public function do_register(Request $request){
         // Valida los datos del formulario de registro
-        $credentials = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8'
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'password' => 'required|string|max:8',
+            'apellidos' => 'required|string|max:255',
+            'entidad' => 'required|string|max:255',
+            'cargo' => 'required|string|max:255',
+            'tipologia' => 'required|string',
+            'dni' => 'required|string|max:255',
+            'telefono' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'experiencia_cpi' => 'required|string',
+            'anios_experiencia' => 'nullable|integer|min:0',
+            'conoce_mdt' => 'required|string',
+            'acepta_tratamiento_datos' => 'required|boolean',
         ]);
 
         // Crea un nuevo usuario
         $user = new User();
-        $user->name = $credentials['name'];
-        $user->email = $credentials['email'];
-        $user->password = Hash::make($credentials['password']);
-        $user->role = $request->role;
+        $user->nombre = $request->nombre;
+        $user->apellidos = $request->apellidos;
+        $user->password = $request->password;
+        $user->entidad = $request->entidad;
+        $user->cargo = $request->cargo;
+        $user->tipologia = $request->tipologia;
+        $user->dni = $request->dni;
+        $user->telefono = $request->telefono;
+        $user->email = $request->email;
+        $user->experiencia_cpi = $request->experiencia_cpi;
+        $user->anios_experiencia = $request->anios_experiencia;
+        $user->conoce_mdt = $request->conoce_mdt;
+        $user->acepta_tratamiento_datos = $request->acepta_tratamiento_datos;
         $user->save();
 
         // Inicia sesión con el usuario recién creado
         Auth::login($user);
 
         // Redirige al usuario a la vista principal del panel
-        return $user->role;
+        return redirect()->back()->with('success', '¡Su inscripción se ha realizado correctamente!');
     }
 
     /**
