@@ -16,9 +16,17 @@
  }
  
  .sidenav-trigger {
-   color: #26a69a;
+   color: #047cec;
  }
- 
+ #titulo{
+  color: #047cec;
+ }
+ .savePreinscripcion{
+  color: #047cec;
+ }
+ #savePreinscripcion{
+  color: #047cec;
+ }
  .parallax-container {
    min-height: 380px;
    line-height: 0;
@@ -52,7 +60,8 @@
    font-size: inherit;
  }
  
- footer.page-footer {
+ .footer.page-footer {
    margin: 0;
+   color:#047cec;
  }
  

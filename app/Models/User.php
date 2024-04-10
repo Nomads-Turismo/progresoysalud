@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
@@ -31,6 +32,7 @@ class User extends Authenticatable
         'anios_experiencia',
         'conoce_mdt',
         'acepta_tratamiento_datos',
+        'acepta_notificacion'
     ];
 
     /**
